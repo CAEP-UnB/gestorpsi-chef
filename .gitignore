@@ -1,5 +1,7 @@
 .vagrant
-/cookbooks
+
+repo/
+virtualenv/
 
 # Bundler
 bin/*
