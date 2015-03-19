@@ -13,7 +13,10 @@ Vagrant.configure(2) do |config|
       "mariadb" => {
         "db_name" => "gestorpsi",
         "user" => "root",
-        "password" => ""
+        "server_root_password" => "",
+        "install" => {
+          "version" => "5.5"
+        }
       }
     }
   end

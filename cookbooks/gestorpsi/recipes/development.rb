@@ -15,6 +15,7 @@ directory "repo_dir" do
   owner "vagrant"
   group "vagrant"
   path "#{REPO_DIR}"
+  recursive true
   action :create
 end
 
@@ -23,6 +24,13 @@ git "#{REPO_DIR}" do
   reference "unb"
   action :sync
 end
+
+
+# Configure MariaDB
+include_recipe "mariadb::server"
+include_recipe "mariadb::client"
+
+package "libmysqlclient-dev"
 
 
 # Configure Python environment
@@ -44,4 +52,9 @@ template "#{HOME}/.bashrc" do
     :venv_dir => "#{VENV_DIR}",
     :shared_dir => "#{SHARED_DIR}/repo"
   })
+end
+
+python_pip "" do
+  virtualenv "#{VENV_DIR}"
+  options "-r #{REPO_DIR}/requirements.txt"
 end
