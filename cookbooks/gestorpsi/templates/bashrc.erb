@@ -7,3 +7,6 @@ fi
 
 source <%= @venv_dir %>/bin/activate
 cd <%= @shared_dir %>
+
+alias django="python <%= @repo_dir%>/manage.py"
+alias django-run="python <%= @repo_dir %>/manage.py runserver 0.0.0.0:8000"
