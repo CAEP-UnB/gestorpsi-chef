@@ -24,6 +24,7 @@ end
 
 git "#{REPO_DIR}" do
   repository "https://github.com/CAEP-UnB/gestorpsi.git"
+  reference "unb"
   action :sync
 end
 
@@ -87,9 +88,12 @@ directory "email_folder" do
   owner "vagrant"
   group "vagrant"
   path "#{EMAIL_DIR}"
-  mode 777
   recursive true
   action :create
+end
+
+execute "email_folder_permission" do
+  command "chmod -R 777 #{EMAIL_DIR}"
 end
 
 execute "syncdb" do
