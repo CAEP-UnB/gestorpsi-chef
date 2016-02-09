@@ -2,3 +2,5 @@ gestorpsi:
   run_list:
     - recipe[basics]
     - recipe[postgresql]
+    - recipe[gestorpsi::database]
+    - recipe[gestorpsi]
