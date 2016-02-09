@@ -1,23 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require "yaml"
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "debian/jessie64"
 
-  config.vm.network "forwarded_port", guest: 8000, host: 8080
+  env = ENV.fetch('SPB_ENV', 'local')
+  ips = YAML.load_file("config/#{env}/ips.yaml")
 
-  config.vm.provision "chef_solo" do |chef|
-    chef.add_recipe "gestorpsi::development"
-
-    chef.json = {
-      "mariadb" => {
-        "db_name" => "gestorpsi",
-        "user" => "root",
-        "server_root_password" => "",
-        "install" => {
-          "version" => "5.5"
-        }
-      }
-    }
+  config.vm.define "gestorpsi" do |gestorpsi|
+    gestorpsi.vm.provider "virtualbox" do |vm, override|
+        override.vm.network 'private_network', ip: ips['gestorpsi']
+    end
   end
+
 end
