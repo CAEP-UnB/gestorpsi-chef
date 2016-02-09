@@ -1,0 +1,12 @@
+{
+  "run_list": [
+    "recipe[basics]",
+    "recipe[postgresql]"
+  ],
+  "environment": "local",
+  "config": false,
+  "peers": {
+    "gestorpsi": "10.10.10.2"
+  },
+  "firewall": ""
+}

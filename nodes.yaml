@@ -1,0 +1,4 @@
+gestorpsi:
+  run_list:
+    - recipe[basics]
+    - recipe[postgresql]

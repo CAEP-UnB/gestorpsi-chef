@@ -1,0 +1,16 @@
+Host *
+  User vagrant
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentitiesOnly yes
+  LogLevel FATAL
+
+
+Host gestorpsi
+  Hostname 10.10.10.2
+  Port 22
+  IdentityFile .vagrant/machines/gestorpsi/virtualbox/private_key
+
+
+# vim: ft=sshconfig
